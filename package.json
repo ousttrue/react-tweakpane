@@ -3,7 +3,7 @@
   "version": "0.8.0",
   "main": "dist/index.js",
   "module": "dist/index.cjs",
-  "types": "src/index.d.ts",
+  "types": "dist/index.d.ts",
   "author": "MelonCode",
   "type": "module",
   "license": "MIT",
