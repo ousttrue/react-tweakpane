@@ -85,7 +85,7 @@ export function usePaneInput<T extends Object, K extends keyof T>(
       : (event) => set(event.value)
 
     const input = pane
-      .addInput(parentRef.current!.params, key, inputParams)
+      .addBinding(parentRef.current!.params, key, inputParams)
       .on('change', handler)
 
     inputRef.current = input
