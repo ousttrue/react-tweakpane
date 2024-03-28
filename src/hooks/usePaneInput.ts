@@ -1,4 +1,4 @@
-import { InputBindingApi, InputParams, TpChangeEvent } from '@tweakpane/core'
+import { InputBindingApi, BindingParams, TpChangeEvent } from '@tweakpane/core'
 
 import {
   RefObject,
@@ -17,7 +17,7 @@ type InputRef<T> = RefObject<InputBindingApi<unknown, T>>
 export function usePaneInput<T extends Object, K extends keyof T>(
   ref: RefObject<FolderInstance<T>>,
   key: K,
-  inputParams: InputParams | undefined,
+  inputParams: BindingParams | undefined,
   onChange: (event: TpChangeEvent<T[K]>) => void
 ): [never, (value: T[K]) => void, InputRef<T[K]>]
 
@@ -35,14 +35,14 @@ export function usePaneInput<T extends Object, K extends keyof T>(
 export function usePaneInput<T extends Object, K extends keyof T>(
   paneRef: RefObject<FolderInstance<T>>,
   key: K,
-  inputParams?: InputParams | undefined,
+  inputParams?: BindingParams | undefined,
   onChange?: undefined
 ): [T[K], (value: T[K]) => void, InputRef<T[K]>]
 
 export function usePaneInput<T extends Object, K extends keyof T>(
   paneRef: RefObject<FolderInstance<T>>,
   key: K,
-  inputParams?: InputParams | undefined,
+  inputParams?: BindingParams | undefined,
   onChange?: undefined
 ): [T[K], (value: T[K]) => void, InputRef<T[K]>]
 
@@ -50,7 +50,7 @@ export function usePaneInput<T extends Object, K extends keyof T>(
   parentRef: RefObject<FolderInstance<T>>,
   key: K,
   inputParamsArg:
-    | InputParams
+    | BindingParams
     | ((event: TpChangeEvent<T[K]>) => void)
     | undefined = {},
   onChangeArg: ((event: TpChangeEvent<T[K]>) => void) | undefined = undefined
@@ -61,7 +61,7 @@ export function usePaneInput<T extends Object, K extends keyof T>(
 
   const [value, set] = useState(parentRef.current!.params[key])
 
-  const inputRef = useRef<InputBindingApi<unknown, T[K]>>(null!)
+  const inputRef = useRef<any>(null!)
 
   const callbackRef = useRef(onChange)
   callbackRef.current = onChange
